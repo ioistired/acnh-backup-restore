@@ -40,6 +40,7 @@ include $(DEVKITPRO)/libnx/switch_rules
 APP_TITLE	:= ACNH Backup Restore
 APP_AUTHOR	:= iomintz
 APP_VERSION	:= 0.0.1
+ICON		:= icon.jpg
 
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
