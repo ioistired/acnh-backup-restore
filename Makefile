@@ -37,6 +37,10 @@ include $(DEVKITPRO)/libnx/switch_rules
 #   of a homebrew executable (.nro). This is intended to be used for sysmodules.
 #   NACP building is skipped as well.
 #---------------------------------------------------------------------------------
+APP_TITLE	:= ACNH Backup Restore
+APP_AUTHOR	:= iomintz
+APP_VERSION	:= 0.0.1
+
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
