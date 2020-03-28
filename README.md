@@ -1,7 +1,8 @@
 # ACNH Backup Restore
 
-A very simple save backup tool for Animal Crossing: New Horizons until https://github.com/FlagBrew/Checkpoint/issues/324
-is fixed.
+A very simple save backup tool for Animal Crossing: New Horizons until [Checkpoint supports Device Saves](https://github.com/FlagBrew/Checkpoint/issues/324).
+
+![screenshot of the restore menu](/screenshot.png)
 
 ## Credits
 
