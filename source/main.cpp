@@ -64,6 +64,8 @@ void backup() {
 		if(dir == NULL) {
 			print("Failed to open dir.\n");
 		} else {
+			io::createDirectory(OUTPUT_PATH);
+
 			time_t unixTime = time(NULL);
 			struct tm* now = localtime((const time_t *)&unixTime);
 			char buf[FS_MAX_PATH];
