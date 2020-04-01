@@ -15,8 +15,7 @@ enum state {
 	STATE_RESTORE
 };
 
-Result get_save(u64 *application_id);
 void backup(void);
-void restore_menu(enum state* state, std::vector<char *>* backups);
-void process_restore_input(enum state* state, std::vector<char *>* backups, int* selection, u64 key_down);
-void restore(char *backup);
+void restore_menu(enum state& state, std::vector<char *>& backups);
+void process_restore_input(enum state& state, std::vector<char *>& backups, int& selection, u64 key_down);
+void restore(char* backup);

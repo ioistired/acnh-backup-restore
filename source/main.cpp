@@ -34,9 +34,9 @@ int main(int argc, char **argv) {
 			state = STATE_DONE;
 		} else if (kDown & KEY_A && state == STATE_MAIN) {
 			state = STATE_RESTORE_MENU;
-			restore_menu(&state, &backups);
+			restore_menu(state, backups);
 		} else if (state == STATE_RESTORE_MENU) {
-			process_restore_input(&state, &backups, &selection, kDown);
+			process_restore_input(state, backups, selection, kDown);
 		} else if (state == STATE_RESTORE) {
 			restore(backups[selection]);
 			state = STATE_DONE;
@@ -97,9 +97,8 @@ void backup() {
 	print("Press + to exit.\n");
 }
 
-void restore_menu(enum state* state, std::vector<char *>* backups) {
-	DIR* dir = NULL;
-	dir = opendir(OUTPUT_PATH);
+void restore_menu(enum state* state, std::vector<char *>& backups) {
+	DIR* dir = opendir(OUTPUT_PATH);
 	struct dirent* ent;
 
 	if (dir == NULL) {
@@ -114,41 +113,41 @@ void restore_menu(enum state* state, std::vector<char *>* backups) {
 
 	while ((ent = readdir(dir))) {
 		if (ent->d_type == DT_DIR) {
-			backups->push_back(strdup(ent->d_name));
+			backups.push_back(strdup(ent->d_name));
 		}
 	}
 	closedir(dir);
 
-	std::sort(backups->begin(), backups->end(), [](char* a, char* b) {
+	std::sort(backups.begin(), backups.end(), [](char* a, char* b) {
 		return strcmp(a, b) < 0;
 	});
 
-	for (const auto& v : *backups) {
+	for (const auto& v : backups) {
 		print("  %s\n", v);
 	}
 }
 
-void process_restore_input(enum state* state, std::vector<char *>* backups, int* selection, u64 key_down) {
+void process_restore_input(enum state& state, std::vector<char *>& backups, int& selection, u64 key_down) {
 	if (key_down & KEY_A) {
-		*state = STATE_RESTORE;
+		state = STATE_RESTORE;
 		print("\x1b[2J");  // clear screen
 		return;
 	}
 
 	if (key_down & KEY_DOWN) {
-		print("\x1b[%d;0H ", 6 + *selection);
-		(*selection)++;
+		print("\x1b[%d;0H ", 6 + selection);
+		selection++;
 	} else if (key_down & KEY_UP) {
-		print("\x1b[%d;0H ", 6 + *selection);
-		(*selection)--;
+		print("\x1b[%d;0H ", 6 + selection);
+		selection--;
 	}
-	if (*selection < 0) {
-		*selection = backups->size() - 1;
-	} else if (*selection >= backups->size()) {
-		*selection = 0;
+	if (selection < 0) {
+		selection = backups.size() - 1;
+	} else if (selection >= backups.size()) {
+		selection = 0;
 	}
 
-	print("\x1b[%d;0H>", 6 + *selection);
+	print("\x1b[%d;0H>", 6 + selection);
 }
 
 void restore(char *backup) {
