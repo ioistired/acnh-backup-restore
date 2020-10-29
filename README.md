@@ -1,17 +1,8 @@
 # ACNH Backup Restore
 
-A very simple save backup tool for Animal Crossing: New Horizons until [Checkpoint supports Device Saves].
+## DEPRECATION NOTICE
 
-![screenshot of the restore menu](/screenshot.png)
-
-## Installation
-
-Download the .nro file from the [releases] page and drop it in your /switch/ folder on your microSD card.
-Or get it off the Homebrew App Store.
-
-## Usage
-
-After launching the software, press B to backup your current ACNH save file, or A to pick a previous backup to restore.
+This software has not been maintained for 7 months and may have [critical bugs](https://github.com/iomintz/acnh-backup-restore/issues/3) that I am not motivated to fix. Since a suitable alternative called [JKSV](https://github.com/J-D-K/JKSV) exists, please use that instead. This project was just created as an opportunity for me to learn homebrew development, and because Checkpoint did not yet support Device Saves. It has served that purpose, and I have moved on to other things.
 
 ## Credits
 
